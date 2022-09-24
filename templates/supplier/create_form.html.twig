@@ -26,21 +26,40 @@
         background-color: lightblue;
         border: 2px solid black
     }
+
+    .title {
+        color: black;
+        font-family: Arial;
+        font-size: 20px;
+        border: 1px solid black;
+        background-color: lightblue;
+    }
+
+    .button {
+        border: 1px solid grey;
+        border-radius: 2px;
+        background-color: #F0F0F0;
+        color: black;
+        font-family: Arial;
+        font-size: 13.33px;
+        text-decoration: none;
+        padding: 1px 6px;
+    }
 </style>
     <body style="background-color:cornflowerblue">
     {{ form_start(create_form) }}
         <p>{{ form_errors(create_form) }}</p>
-        <h5 style="color:black; font-family:Arial; font-size:20px; border:1px solid black; background-color:lightblue">{{ form_label(create_form.name, 'Nombre') }}</h5>
+        <h5 class="title">{{ form_label(create_form.name, 'Nombre') }}</h5>
         {{ form_row(create_form.name, { 'label': ' '}) }}
-        <h5 style="color:black; font-family:Arial; font-size:20px; border:1px solid black; background-color:lightblue">{{ form_label(create_form.email, 'Correo electrónico') }}</h5>
+        <h5 class="title">{{ form_label(create_form.email, 'Correo electrónico') }}</h5>
         {{ form_row(create_form.email, { 'label': ' '}) }}
-        <h5 style="color:black; font-family:Arial; font-size:20px; border:1px solid black; background-color:lightblue">{{ form_label(create_form.phone, 'Teléfono de contacto') }}</h5>
+        <h5 class="title">{{ form_label(create_form.phone, 'Teléfono de contacto') }}</h5>
         {{ form_row(create_form.phone, { 'label': ' '}) }}
-        <h5 style="color:black; font-family:Arial; font-size:20px; border:1px solid black; background-color:lightblue">{{ form_label(create_form.type, 'Tipo de proveedor') }}</h5>
+        <h5 class="title">{{ form_label(create_form.type, 'Tipo de proveedor') }}</h5>
         {{ form_row(create_form.type, { 'label': ' '}) }}
-        <h5 style="color:black; font-family:Arial; font-size:20px; border:1px solid black; background-color:lightblue">{{ form_label(create_form.active, 'Activo') }}</h5>
+        <h5 class="title">{{ form_label(create_form.active, 'Activo') }}</h5>
         {{ form_row(create_form.active, { 'label': ' '}) }}
     {{ form_end(create_form) }}
-    <a style="border:1px solid grey; border-radius:2px; background-color:#F0F0F0; color:black; font-family:Arial; font-size:13.33px; text-decoration:none; padding:1px 6px" href={{ path('index') }}>Cancelar</a>
+    <a class="button" href={{ path('index') }}>Cancelar</a>
     </body>
 {% endblock %}

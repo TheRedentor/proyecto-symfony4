@@ -52,7 +52,7 @@ class SupplierController extends AbstractController
         ]);
     }
 
-    public function edit_form(ManagerRegistry $doctrine, int $id, Request $request): Response{
+    public function edit_form(ManagerRegistry $doctrine, string $id, Request $request): Response{
         $entityManager = $doctrine->getManager();
 
         $supplier = $doctrine->getRepository(Supplier::class)->find($id);
