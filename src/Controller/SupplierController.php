@@ -57,38 +57,43 @@ class SupplierController extends AbstractController
 
         $supplier = $doctrine->getRepository(Supplier::class)->find($id);
 
-        if ($supplier != null){
-            $form = $this->createForm(SupplierFormType::class, $supplier, array('method' => 'PUT'));
-
-            try{
-                $form->handleRequest($request);
-            }
-            catch(\Exception $e){
-                return $this->redirectToRoute('edit_form', array('id' => $id));
-            }
-    
-            if ($form->isSubmitted() && $form->isValid()){
-                $supplier->setEdited(new \DateTime());
-                $entityManager->persist($supplier);
-                $entityManager->flush();
-                return $this->redirectToRoute('index');;
-            }
-    
-            return $this->render('supplier/edit_form.html.twig', [
-                'edit_form' => $form->createView(),
-            ]);
-        }
-        else{
+        if ($supplier == null){
             return $this->redirectToRoute('index');
         }
+
+        $form = $this->createForm(SupplierFormType::class, $supplier, array('method' => 'PUT'));
+
+        try{
+            $form->handleRequest($request);
+        }
+        catch(\Exception $e){
+            return $this->redirectToRoute('edit_form', array('id' => $id));
+        }
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $supplier->setEdited(new \DateTime());
+            $entityManager->persist($supplier);
+            $entityManager->flush();
+            return $this->redirectToRoute('index');;
+        }
+
+        return $this->render('supplier/edit_form.html.twig', [
+            'edit_form' => $form->createView(),
+        ]);
     }
 
     public function delete(ManagerRegistry $doctrine, int $id): Response{
         $entityManager = $doctrine->getManager();
 
         $supplier = $doctrine->getRepository(Supplier::class)->find($id);
+
+        if ($supplier == null){
+            return $this->redirectToRoute('index');
+        }
+
         $entityManager->remove($supplier);
         $entityManager->flush();
+        
         return $this->redirectToRoute('index');
     }
 }
