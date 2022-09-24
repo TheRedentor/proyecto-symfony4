@@ -1,0 +1,19 @@
+index:
+    path: /
+    controller: App\Controller\SupplierController::index
+
+create_form:
+    path: /create
+    controller: App\Controller\SupplierController::create_form
+
+edit_form:
+    path: /edit/{id}
+    controller: App\Controller\SupplierController::edit_form
+
+delete:
+    path: /delete/{id}
+    controller: App\Controller\SupplierController::delete
+
+pageNotFound:
+    path:  /{path}
+    controller: App\Controller\ErrorController::index
